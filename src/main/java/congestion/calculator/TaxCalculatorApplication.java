@@ -1,4 +1,4 @@
-package congestion.calculator.controller;
+package congestion.calculator;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
