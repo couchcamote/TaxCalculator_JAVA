@@ -11,6 +11,7 @@ import java.util.Map;
 import org.springframework.stereotype.Service;
 
 import congestion.calculator.Car;
+import congestion.calculator.Emergency;
 import congestion.calculator.Motorbike;
 import congestion.calculator.Motorcycle;
 import congestion.calculator.Vehicle;
@@ -35,7 +36,7 @@ public class CongestionTaxCalculator {
     public static void main(String[] args) throws ParseException {
     	
     	//Test Timestamps
-        String[] timestampStringsX = {
+        String[] timestampStrings = {
             "2013-01-14 21:00:00",
             "2013-01-15 21:00:00",
             "2013-02-07 06:23:27",
@@ -55,17 +56,21 @@ public class CongestionTaxCalculator {
         };
         
         //test specific dates
-        String[] timestampStrings = {
-         "2013-02-08 06:27:00",
-        "2013-02-08 06:20:27",
-        "2013-02-08 14:35:00",
-        "2013-02-08 15:29:00",      //withinn 60 min
-        "2013-02-08 15:47:00",      //withinn 60 min
-        "2013-02-08 16:01:00",   
-        "2013-02-08 16:48:00",
-        "2013-02-08 17:49:00",
-        "2013-02-08 18:29:00",      //withinn 60 min
-        "2013-02-08 18:35:00",	
+        String[] timestampStringsX = {
+        // "2013-02-08 06:29:00",
+      //  "2013-02-08 06:31:27",
+//        "2013-02-08 14:35:00",
+//        "2013-02-08 15:29:00",      //withinn 60 min
+//        "2013-02-08 15:47:00",      //withinn 60 min
+//        "2013-02-08 16:01:00",   
+//        "2013-02-08 16:48:00",
+//        "2013-02-08 17:49:00",
+//        "2013-02-08 18:29:00",      //withinn 60 min
+//        "2013-02-08 18:35:00",	
+        		
+           //   "2013-02-08 15:29:00",      
+           //   "2013-02-08 15:31:00",
+        		
             };	
 
     CongestionTaxCalculator taxCalculator = new CongestionTaxCalculator();
@@ -102,6 +107,8 @@ public class CongestionTaxCalculator {
 
             long diffInMillies = date.getTime() - intervalStart.getTime();
             long minutes = diffInMillies/1000/60;
+            
+        
 
             if (minutes <= 60)
             {
@@ -114,16 +121,14 @@ public class CongestionTaxCalculator {
                 }
                 
                 totalFee += tempFee;
+                
             }
             else
             {
                 totalFee += nextFee;
             }
 
-           
-           //move on to next date as interalStart 
-           intervalStart = date;
-            
+            intervalStart = date;               //move on to next date as interalStart        
         }                
  
         if (totalFee > 60) totalFee = 60;
@@ -213,6 +218,7 @@ public class CongestionTaxCalculator {
      */
     private Vehicle getVehicleInstance(String vehicle) {
     	//We could add a factory for each vehicle type here
+    	//return new Emergency();
     	return new Car();
     }
     

@@ -1,3 +1,16 @@
+
+
+
+
+
+
+
+
+
+
+
+NOTES:
+
 - I prioritized the calculation GetTollFee , IsTollFreeDate
 - It is faster to debug my fix if I can test it directly without need to setup an HTTP endpoint first
 - I had extracted the test data (dates)
