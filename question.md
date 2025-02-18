@@ -1,5 +1,14 @@
 
-
+Questions:
+1) I have this scenario where the car passes multiple times consequently each is within 60 minutes 
+	- Although the very first pass was already beyond 1 hr from the latest one (e.g. 4th pass), how should we calculate this? Should we get the highest or do we start a new calculation on maybe Pass 3
+	
+	Pass 1 
+	Pass 2 (within 60 min of Pass 1) - highest
+	Pass 3 (within 60 min of Pass 2) 
+	Pass 4 (within 60 min of Pass 3)
+	
+2. 
 
 
 
