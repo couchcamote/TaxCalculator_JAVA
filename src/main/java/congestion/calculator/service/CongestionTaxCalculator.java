@@ -1,10 +1,19 @@
-package congestion.calculator;
+package congestion.calculator.service;
 
-import java.util.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 
-import java.text.*;
+import congestion.calculator.Car;
+import congestion.calculator.Motorbike;
+import congestion.calculator.Motorcycle;
+import congestion.calculator.Vehicle;
 
 
 @Service
@@ -26,7 +35,7 @@ public class CongestionTaxCalculator {
     public static void main(String[] args) throws ParseException {
     	
     	//Test Timestamps
-        String[] timestampStrings = {
+        String[] timestampStringsX = {
             "2013-01-14 21:00:00",
             "2013-01-15 21:00:00",
             "2013-02-07 06:23:27",
@@ -34,23 +43,30 @@ public class CongestionTaxCalculator {
             "2013-02-08 06:27:00",
             "2013-02-08 06:20:27",
             "2013-02-08 14:35:00",
-            "2013-02-08 15:29:00",      //withinn 60 min
-            "2013-02-08 15:47:00",      //withinn 60 min
+            "2013-02-08 15:29:00",      
+            "2013-02-08 15:47:00",      
             "2013-02-08 16:01:00",   
             "2013-02-08 16:48:00",
             "2013-02-08 17:49:00",
-            "2013-02-08 18:29:00",      //withinn 60 min
-            "2013-02-08 18:35:00",		//withinn 60 min	
+            "2013-02-08 18:29:00",      
+            "2013-02-08 18:35:00",			
             "2013-03-26 14:25:00",
             "2013-03-28 14:07:27"
         };
         
         //test specific dates
-      //  String[] timestampStrings = {
-           //   "2013-02-08 09:27:00",
-             // "2013-02-08 06:20:27",
-           //   "2013-02-08 14:35:00",
-           // };	
+        String[] timestampStrings = {
+         "2013-02-08 06:27:00",
+        "2013-02-08 06:20:27",
+        "2013-02-08 14:35:00",
+        "2013-02-08 15:29:00",      //withinn 60 min
+        "2013-02-08 15:47:00",      //withinn 60 min
+        "2013-02-08 16:01:00",   
+        "2013-02-08 16:48:00",
+        "2013-02-08 17:49:00",
+        "2013-02-08 18:29:00",      //withinn 60 min
+        "2013-02-08 18:35:00",	
+            };	
 
     CongestionTaxCalculator taxCalculator = new CongestionTaxCalculator();
     taxCalculator.getTaxForVehicle("Car", timestampStrings);
@@ -89,8 +105,14 @@ public class CongestionTaxCalculator {
 
             if (minutes <= 60)
             {
-                if (totalFee > 0) totalFee -= tempFee;
-                if (nextFee >= tempFee) tempFee = nextFee;
+                if (totalFee > 0) {
+                	totalFee -= tempFee;
+                }
+                
+                if (nextFee >= tempFee) {
+                	tempFee = nextFee;
+                }
+                
                 totalFee += tempFee;
             }
             else

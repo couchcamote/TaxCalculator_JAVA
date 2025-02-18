@@ -1,14 +1,14 @@
 - I prioritized the calculation GetTollFee , IsTollFreeDate
 - It is faster to debug my fix if I can test it directly without need to setup an HTTP endpoint first
-- I had extracted the the data (dates)
+- I had extracted the test data (dates)
 
 
 - Bugs found
 -- Setting of intervalStart at the end of each loop
--- 
+-- calculation on range ( 08:30–14:59 | SEK 8  | )
 
 
-Plans, put these data in an external source instead.
+Future Plans, put these data in an external source instead.
 
 | Time        | Amount |
 | ----------- | :----: |
